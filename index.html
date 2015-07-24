@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Date Validations</title>
+	<meta name="Date Validations" content="Practice using jQuery to validate dates and inputs">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script>
+		
+		$(document).ready(function() {
+			$(function(){
+				$('#datepicker_arrive').datepicker({
+					showAnim: 'slideDown'
+				});
+					})
+			$(function(){
+				$('#datepicker_depart').datepicker({
+					showAnim: 'slideDown'
+				});
+			})
+			$('#dialog-message').hide();
+
+			$('form').submit(function() {
+				var name = $('#full_name').val();
+				var arrive = $('#datepicker_arrive').val();
+				var depart = $('#datepicker_depart').val();
+				console.log(name + ' ' + arrive + ' ' + depart);
+				if (name == '') {
+					$('#name').append('<p>You must enter your name!</p>');
+				}
+				else {
+					$('#dialog-message').append('<ul><li>Depart: <b>' + depart + '</b></li><li>Arrive: <b>' + arrive + '</b></li></ul><p>Thank you <b>' + name + '</b>!</p>');
+					$(function() {
+						$('#dialog-message').dialog({
+							modal: true,
+							maxWidth: 400,
+							buttons: {
+								Ok: function() {
+									$(this).dialog('close');
+								}
+							}
+						});
+					});
+				}
+				return false;
+			})
+		})
+	</script>
+	<style>
+		* {
+	padding: 0px;
+	margin: 0px;
+	}
+	#container {
+		width: 900px;
+		height: 300px;
+		margin: 0px auto;
+		background-color: #343477;
+		overflow: hidden;
+	}
+	h1 {
+		text-align: center;
+		color: #B6B6D3;
+		background-color: #020223;
+	}
+	form {
+		width: 450px;
+	}
+		form p {
+			color: #B6B6D3;
+		}
+	label {
+		margin: 20px;
+		float: right;
+	}
+	#button {
+		background-color: #11114D;
+		border: 2px solid #B6B6D3;
+		border-radius: 4px;
+		position: relative;
+		left: 250px;
+		top: 50px;
+		color: #B6B6D3;
+		padding: 5px;
+		font-weight: bold;
+	}
+	#datepicker_depart, #datepicker_arrive, #full_name {
+		background-color: #B6B6D3;
+		border: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="container">
+			<h1>Welcome to the Coding Dojo plan-a-Cruise!</h1>
+		<div id="form">
+			<form>
+				<label>
+					<p>Departure Date: <input type="text" id="datepicker_depart"></p>
+				</label>
+				<label>
+					<p>Arrival Date: <input type="text" id="datepicker_arrive"></p>
+				</label>
+				<label id="name">
+					<p>Full Name: <input type="text" id="full_name"></p>
+				</label>
+				<label>
+					<input type="submit" value="Submit" id="button">
+				</label>
+			</form>
+
+		</div>
+
+	</div>
+	<div id="dialog-message" title="Alert!">
+		<p>
+			<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px; 0;"></span>
+			Your trip has been successfully planned!
+		</p>
+		<p>Trip Details</p>
+	</div>
+</body>
+</html>
